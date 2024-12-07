@@ -1,4 +1,4 @@
-const nutritionist = require("./models/nutritionist");
+const nutritionist = require("../models/nutritionist");
 
 module.exports = {
   data: async (_req, res) => {
@@ -86,7 +86,7 @@ module.exports = {
         where: {
           nutritionistID: req.params.id,
         },
-      }
+      },
     );
     if (nutritionists == null) {
       return res.status(404).json({

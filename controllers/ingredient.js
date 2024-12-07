@@ -1,4 +1,4 @@
-const ingredient = require("./models/ingredient");
+const ingredient = require("../models/ingredient");
 
 module.exports = {
   data: async (_req, res) => {
@@ -76,7 +76,7 @@ module.exports = {
         where: {
           ingredientID: req.params.id,
         },
-      }
+      },
     );
     if (ingredients == null) {
       return res.status(404).json({

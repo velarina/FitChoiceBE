@@ -1,4 +1,4 @@
-const member = require("./models/member");
+const member = require("../models/member");
 
 module.exports = {
   data: async (_req, res) => {
@@ -84,7 +84,7 @@ module.exports = {
         where: {
           memberID: req.params.id,
         },
-      }
+      },
     );
     if (members == null) {
       return res.status(404).json({

@@ -1,4 +1,4 @@
-const admin = require("./models/admin");
+const admin = require("../models/admin");
 
 module.exports = {
   data: async (_req, res) => {
@@ -82,7 +82,7 @@ module.exports = {
         where: {
           adminID: req.params.id,
         },
-      }
+      },
     );
     if (admins == null) {
       return res.status(404).json({

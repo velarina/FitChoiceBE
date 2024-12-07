@@ -1,4 +1,4 @@
-const product = require("./models/product");
+const product = require("../models/product");
 
 module.exports = {
   data: async (_req, res) => {
@@ -86,7 +86,7 @@ module.exports = {
         where: {
           productID: req.params.id,
         },
-      }
+      },
     );
     if (products == null) {
       return res.status(404).json({

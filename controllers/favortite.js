@@ -1,4 +1,4 @@
-const favorite = require("./models/favorite");
+const favorite = require("../models/favorite");
 
 module.exports = {
   data: async (_req, res) => {
@@ -76,7 +76,7 @@ module.exports = {
         where: {
           favoriteID: req.params.id,
         },
-      }
+      },
     );
     if (favorites == null) {
       return res.status(404).json({

@@ -1,4 +1,4 @@
-const healthIssue = require("./models/healthIssue");
+const healthIssue = require("../models/healthIssue");
 
 module.exports = {
   data: async (_req, res) => {
@@ -80,7 +80,7 @@ module.exports = {
         where: {
           healthIssueID: req.params.id,
         },
-      }
+      },
     );
     if (healthIssues == null) {
       return res.status(404).json({

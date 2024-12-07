@@ -1,4 +1,4 @@
-const category = require("./models/category");
+const category = require("../models/category");
 
 module.exports = {
   data: async (_req, res) => {
@@ -76,7 +76,7 @@ module.exports = {
         where: {
           categoryID: req.params.id,
         },
-      }
+      },
     );
     if (categories == null) {
       return res.status(404).json({
