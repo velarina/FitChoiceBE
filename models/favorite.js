@@ -1,5 +1,7 @@
 const { Sql, DataTypes } = require("sequelize");
-const database = require("./config/database");
+const database = require("../config/database");
+const products = require("../product");
+
 const favorites = database.define("favorites", {
   favoriteID: {
     type: DataTypes.UUID,
@@ -32,6 +34,8 @@ const favorites = database.define("favorites", {
     },
   },
 });
+
+favorites.belongsTo(products);
 
 favorites
   .sync()

@@ -1,5 +1,7 @@
 const { Sql, DataTypes } = require("sequelize");
-const database = require("./config/database");
+const database = require("../config/database");
+const products = require("../product");
+
 const nutritionist = database.define("nutritionist", {
   nutritionistID: {
     type: DataTypes.UUID,
@@ -32,6 +34,8 @@ const nutritionist = database.define("nutritionist", {
     allowNull: false,
   },
 });
+
+nutritionist.hasMany(products);
 
 nutritionist
   .sync()

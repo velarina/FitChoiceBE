@@ -1,5 +1,8 @@
 const { Sql, DataTypes } = require("sequelize");
-const database = require("./config/database");
+const database = require("../config/database");
+const healthIssue = require("../healthIssue");
+const member_healthissue = require("../member_healthIssue");
+
 const member = database.define("member", {
   memberID: {
     type: DataTypes.UUID,
@@ -28,6 +31,8 @@ const member = database.define("member", {
     allowNull: false,
   },
 });
+
+member.belongsToMany(healthIssue, { through: member_healthissue });
 
 member
   .sync()

@@ -1,5 +1,7 @@
 const { Sql, DataTypes } = require("sequelize");
-const database = require("./config/database");
+const database = require("../config/database");
+const products = require("./product");
+
 const category = database.define("category", {
   categoryID: {
     type: DataTypes.UUID,
@@ -12,6 +14,8 @@ const category = database.define("category", {
     allowNull: false,
   },
 });
+
+category.hasMany(products);
 
 category
   .sync()

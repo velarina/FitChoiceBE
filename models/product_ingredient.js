@@ -1,5 +1,5 @@
 const { Sql, DataTypes } = require("sequelize");
-const database = require("./config/database");
+const database = require("../config/database");
 const product_ingredient = database.define("product_ingredient", {
   productsID: {
     type: DataTypes.UUID,

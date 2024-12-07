@@ -1,5 +1,6 @@
 const { Sql, DataTypes } = require("sequelize");
-const database = require("./config/database");
+const database = require("../config/database");
+
 const admin = database.define("admin", {
   adminID: {
     type: DataTypes.UUID,
@@ -20,7 +21,7 @@ const admin = database.define("admin", {
     allowNull: false,
   },
   permission: {
-    type: DataTypes.enum("adminProduct", "adminRegistrations"),
+    type: DataTypes.ENUM("adminProduct", "adminRegistrations"),
     allowNull: false,
   },
 });

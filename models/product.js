@@ -1,5 +1,13 @@
 const { Sql, DataTypes } = require("sequelize");
-const database = require("./config/database");
+const database = require("../config/database");
+const nutrient = require("./nutrient");
+const nutritionist = require("./nutritionist");
+const admin = require("./admin");
+const category = require("./category");
+const ingredient = require("../controllers/ingredient");
+const product_ingredient = require("./product_ingredient");
+const product_nutrient = require("./product_nutrient");
+
 const products = database.define("products", {
   productsID: {
     type: DataTypes.UUID,
@@ -54,6 +62,12 @@ const products = database.define("products", {
     },
   },
 });
+
+products.belongsTo(nutritionist);
+products.belongsTo(admin);
+products.belongsTo(category);
+products.belongsToMany(nutrient, { through: product_nutrient });
+products.belongsToMany(ingredient, { through: product_ingredient });
 
 products
   .sync()

@@ -1,3 +1,6 @@
+const products = require("./product");
+const product_ingredient = require("../product_ingredient");
+
 const ingredient = database.define("ingredient", {
   ingredientID: {
     type: DataTypes.UUID,
@@ -10,3 +13,12 @@ const ingredient = database.define("ingredient", {
     allowNull: false,
   },
 });
+
+ingredient.belongsToMany(products, { trough: product_ingredient });
+
+ingredient
+  .sync()
+  .then(() => console.log("Table created successfully"))
+  .catch((error) => console.error(error));
+
+modules.export = ingredient;
