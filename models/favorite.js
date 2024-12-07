@@ -35,15 +35,4 @@ const favorites = database.define("favorites", {
   },
 });
 
-favorites.belongsTo(products);
-
-favorites
-  .sync()
-  .then(() => {
-    console.log("Table created succesfully");
-  })
-  .catch((error) => {
-    console.error("unnable to creat table", error.message);
-  });
-
 module.exports = favorites;

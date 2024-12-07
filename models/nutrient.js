@@ -16,15 +16,4 @@ const nutrient = database.define("nutrient", {
   },
 });
 
-// nutrient.belongsToMany(products, { through: product_nutrient });
-
-nutrient
-  .sync()
-  .then(() => {
-    console.log("Table created succesfully");
-  })
-  .catch((error) => {
-    console.error("unnable to creat table", error.message);
-  });
-
 module.exports = nutrient;

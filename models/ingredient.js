@@ -16,11 +16,4 @@ const ingredient = database.define("ingredient", {
   },
 });
 
-// ingredient.belongsToMany(products, { trough: product_ingredient });
-
-ingredient
-  .sync()
-  .then(() => console.log("Table created successfully"))
-  .catch((error) => console.error("unnable to create table: ", error.message));
-
 module.export = ingredient;

@@ -35,15 +35,4 @@ const nutritionist = database.define("nutritionist", {
   },
 });
 
-// nutritionist.hasMany(products);
-
-nutritionist
-  .sync()
-  .then(() => {
-    console.log("Table created succesfully");
-  })
-  .catch((error) => {
-    console.error("unnable to creat table", error.message);
-  });
-
 module.exports = nutritionist;

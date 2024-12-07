@@ -32,15 +32,4 @@ const member = database.define("member", {
   },
 });
 
-member.belongsToMany(healthIssue, { through: member_healthissue });
-
-member
-  .sync()
-  .then(() => {
-    console.log("Table created succesfully");
-  })
-  .catch((error) => {
-    console.error("unnable to creat table", error.message);
-  });
-
 module.exports = member;

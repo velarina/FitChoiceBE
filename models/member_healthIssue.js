@@ -23,13 +23,4 @@ const member_healthissue = database.define("member_healthissue", {
   },
 });
 
-member_healthissue
-  .sync()
-  .then(() => {
-    console.log("Table created succesfully");
-  })
-  .catch((error) => {
-    console.error("unnable to creat table", error.message);
-  });
-
 module.exports = member_healthissue;

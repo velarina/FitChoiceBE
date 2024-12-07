@@ -63,19 +63,4 @@ const products = database.define("products", {
   },
 });
 
-products.belongsTo(nutritionist);
-products.belongsTo(admin);
-// products.belongsTo(category);
-products.belongsToMany(nutrient, { through: product_nutrient });
-// products.belongsToMany(ingredient, { through: product_ingredient });
-
-products
-  .sync()
-  .then(() => {
-    console.log("Table created succesfully");
-  })
-  .catch((error) => {
-    console.error("unnable to creat table", error.message);
-  });
-
 module.exports = products;

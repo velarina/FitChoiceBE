@@ -23,13 +23,4 @@ const product_ingredient = database.define("product_ingredient", {
   },
 });
 
-product_ingredient
-  .sync()
-  .then(() => {
-    console.log("Table created succesfully");
-  })
-  .catch((error) => {
-    console.error("unnable to creat table", error.message);
-  });
-
 module.exports = product_ingredient;
