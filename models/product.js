@@ -28,7 +28,7 @@ const products = database.define("products", {
     allowNull: false,
   },
   permission: {
-    type: DataTypes.enum("declined", "high", "medium", "low"),
+    type: DataTypes.ENUM("declined", "high", "medium", "low"),
     allowNull: false,
   },
   nutritionistID: {
@@ -65,9 +65,9 @@ const products = database.define("products", {
 
 products.belongsTo(nutritionist);
 products.belongsTo(admin);
-products.belongsTo(category);
+// products.belongsTo(category);
 products.belongsToMany(nutrient, { through: product_nutrient });
-products.belongsToMany(ingredient, { through: product_ingredient });
+// products.belongsToMany(ingredient, { through: product_ingredient });
 
 products
   .sync()
@@ -75,7 +75,7 @@ products
     console.log("Table created succesfully");
   })
   .catch((error) => {
-    console.error("unnable to creat table", +error);
+    console.error("unnable to creat table", error.message);
   });
 
 module.exports = products;

@@ -40,7 +40,7 @@ member
     console.log("Table created succesfully");
   })
   .catch((error) => {
-    console.error("unnable to creat table", +error);
+    console.error("unnable to creat table", error.message);
   });
 
 module.exports = member;

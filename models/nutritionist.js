@@ -1,6 +1,6 @@
 const { Sql, DataTypes } = require("sequelize");
 const database = require("../config/database");
-const products = require("../product");
+const products = require("./product");
 
 const nutritionist = database.define("nutritionist", {
   nutritionistID: {
@@ -26,7 +26,7 @@ const nutritionist = database.define("nutritionist", {
     allowNull: false,
   },
   certification: {
-    type: DataTypes.VARCHAR,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   yearsOfExperience: {
@@ -35,7 +35,7 @@ const nutritionist = database.define("nutritionist", {
   },
 });
 
-nutritionist.hasMany(products);
+// nutritionist.hasMany(products);
 
 nutritionist
   .sync()
@@ -43,7 +43,7 @@ nutritionist
     console.log("Table created succesfully");
   })
   .catch((error) => {
-    console.error("unnable to creat table", +error);
+    console.error("unnable to creat table", error.message);
   });
 
 module.exports = nutritionist;

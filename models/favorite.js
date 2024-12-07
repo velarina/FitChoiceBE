@@ -1,6 +1,6 @@
 const { Sql, DataTypes } = require("sequelize");
 const database = require("../config/database");
-const products = require("../product");
+const products = require("./product");
 
 const favorites = database.define("favorites", {
   favoriteID: {
@@ -43,7 +43,7 @@ favorites
     console.log("Table created succesfully");
   })
   .catch((error) => {
-    console.error("unnable to creat table", +error);
+    console.error("unnable to creat table", error.message);
   });
 
 module.exports = favorites;
