@@ -1,7 +1,8 @@
 const sql = require("sequelize");
-const database = new sql("fitchoice", "root", "", {
-  host: "127.0.0.1",
-  dialect: "mysql",
+const config = require("./config");
+const database = new sql(config.dbname, config.dbuser, config.dbpass, {
+  host: config.dbhost,
+  dialect: config.dbdialect,
 });
 
 database
