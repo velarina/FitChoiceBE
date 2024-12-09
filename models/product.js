@@ -4,7 +4,6 @@ const nutrient = require("./nutrient");
 const nutritionist = require("./nutritionist");
 const admin = require("./admin");
 const category = require("./category");
-const ingredient = require("../controllers/ingredient");
 const product_ingredient = require("./product_ingredient");
 const product_nutrient = require("./product_nutrient");
 
