@@ -1,8 +1,13 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
+const config = require("./config/config");
+const router = require("./router/router");
+const PORT = config.port;
+const sync = require("./models/sync");
 
-const database = require("./config/database");
+sync();
+
+app.use(router);
 
 app.listen(PORT, () => {
   console.log(`server is running out:` + PORT);
