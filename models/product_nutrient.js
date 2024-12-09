@@ -1,27 +1,8 @@
 const { Sql, DataTypes } = require("sequelize");
 const database = require("../config/database");
+const products = require("./product");
+const nutrient = require("./nutrient");
 
-const product_nutrient = database.define("product_nutrient", {
-  productsID: {
-    type: DataTypes.UUID,
-    allowNull: false,
-    autoIncrement: false,
-    primaryKey: true,
-    references: {
-      model: "products",
-      key: "productsID",
-    },
-  },
-  nutrientID: {
-    type: DataTypes.UUID,
-    allowNull: false,
-    autoIncrement: false,
-    primaryKey: true,
-    references: {
-      model: "nutrients",
-      key: "nutrientID",
-    },
-  },
-});
+const product_nutrient = database.define("product_nutrient");
 
 module.exports = product_nutrient;

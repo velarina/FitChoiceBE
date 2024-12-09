@@ -37,7 +37,7 @@ const products = database.define("products", {
     autoIncrement: false,
     primaryKey: true,
     references: {
-      model: "nutritionist",
+      model: "nutritionists",
       key: "nutritionistID",
     },
   },
@@ -47,7 +47,7 @@ const products = database.define("products", {
     autoIncrement: false,
     primaryKey: true,
     references: {
-      model: "admin",
+      model: "admins",
       key: "adminID",
     },
   },
@@ -57,7 +57,7 @@ const products = database.define("products", {
     autoIncrement: false,
     primaryKey: true,
     references: {
-      model: "category",
+      model: "categories",
       key: "categoryID",
     },
   },

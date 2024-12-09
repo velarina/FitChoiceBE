@@ -16,4 +16,4 @@ const ingredient = database.define("ingredient", {
   },
 });
 
-module.export = ingredient;
+module.exports = ingredient;

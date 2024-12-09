@@ -1,6 +1,6 @@
 const { Sql, DataTypes } = require("sequelize");
 const database = require("../config/database");
-const member = require("../member");
+const member = require("./member");
 const member_healthissue = require("./member_healthIssue");
 
 const healthIssue = database.define("healthIssue", {

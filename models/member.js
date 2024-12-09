@@ -1,7 +1,7 @@
 const { Sql, DataTypes } = require("sequelize");
 const database = require("../config/database");
-const healthIssue = require("../healthIssue");
-const member_healthissue = require("../member_healthIssue");
+const healthIssue = require("./healthIssue");
+const member_healthissue = require("./member_healthIssue");
 
 const member = database.define("member", {
   memberID: {
@@ -23,7 +23,7 @@ const member = database.define("member", {
     allowNull: false,
   },
   gender: {
-    type: DataTypes.enum("Female", "Male"),
+    type: DataTypes.ENUM("Female", "Male"),
     allowNull: false,
   },
   age: {
