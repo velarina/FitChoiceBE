@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const adminController = require("../controllers/admin");
-const categoryController = require("../controllers/category");
-const favoriteController = require("../controllers/favortite");
+const adminController = require("../controllers/admin_controller");
+const categoryController = require("../controllers/category_controller");
+const favoriteController = require("../controllers/favorite_controller");
 
 router.get("/admin", adminController.data);
 router.get("/admin/:adminID", adminController.index);
