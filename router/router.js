@@ -10,45 +10,45 @@ const nutritionistController = require("../controllers/nutritionist_controller")
 const productController = require("../controllers/product_controller");
 
 router.get("/admin", adminController.data);
-router.get("/admin/:adminID", adminController.index);
+router.get("/admin/:id", adminController.index);
 router.post("/admin", adminController.store);
-router.put("/admin/:adminID", adminController.update);
-router.delete("/admin/:adminID", adminController.delete);
+router.put("/admin/:id", adminController.update);
+router.delete("/admin/:id", adminController.delete);
 
 router.get("/category/", categoryController.data);
-router.get("/category/id/:categoryID", categoryController.index);
+router.get("/category/id/:id", categoryController.index);
 router.post("/category", categoryController.store);
-router.put("/category/:categoryID", categoryController.update);
-router.delete("/category/:categoryID", categoryController.delete);
+router.put("/category/:id", categoryController.update);
+router.delete("/category/:id", categoryController.delete);
 
 router.get("/favorite/", favoriteController.data);
-router.get("/favorite/id/:favoriteID", favoriteController.index);
+router.get("/favorite/id/:id", favoriteController.index);
 router.post("/favorite", favoriteController.store);
-router.put("/favorite/:favoriteID", favoriteController.update);
-router.delete("/favorite/:favoriteyID", favoriteController.delete);
+router.put("/favorite/:id", favoriteController.update);
+router.delete("/favorite/:id", favoriteController.delete);
 
 router.get("/ingredient/", ingredientController.data);
-router.get("/ingredient/id/:ingredientID", ingredientController.index);
+router.get("/ingredient/id/:id", ingredientController.index);
 router.post("/ingredient", ingredientController.store);
-router.put("/ingredient/:ingredientID", ingredientController.update);
-router.delete("/ingredient/:ingredientID", ingredientController.delete);
+router.put("/ingredient/:id", ingredientController.update);
+router.delete("/ingredient/:id", ingredientController.delete);
 
 router.get("/member/", memberController.data);
-router.get("/member/id/:memberID", memberController.index);
+router.get("/member/id/:id", memberController.index);
 router.post("/member", memberController.store);
-router.put("/member/:memberID", memberController.update);
-router.delete("/member/:memberID", memberController.delete);
+router.put("/member/:id", memberController.update);
+router.delete("/member/:id", memberController.delete);
 
 router.get("/nutritionist/", nutritionistController.data);
-router.get("/nutritionist/id/:nutritionistID", nutritionistController.index);
+router.get("/nutritionist/id/:id", nutritionistController.index);
 router.post("/nutritionist", nutritionistController.store);
-router.put("/nutritionist/:nutritionistID", nutritionistController.update);
-router.delete("/nutritionist/:nutritionistID", nutritionistController.delete);
+router.put("/nutritionist/:id", nutritionistController.update);
+router.delete("/nutritionist/:id", nutritionistController.delete);
 
 router.get("/product/", productController.data);
-router.get("/product/id/:productID", productController.index);
+router.get("/product/id/:id", productController.index);
 router.post("/product", productController.store);
-router.put("/product/:productID", productController.update);
-router.delete("/product/:productID", productController.delete);
+router.put("/product/:id", productController.update);
+router.delete("/product/:id", productController.delete);
 
 module.exports = router;
