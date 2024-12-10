@@ -32,16 +32,16 @@ router.post("/ingredient", ingredientController.store);
 router.put("/ingredient/:ingredientID", ingredientController.update);
 router.delete("/ingredient/:ingredientID", ingredientController.delete);
 
-router.get("/member/", ingredientController.data);
-router.get("/member/id/:memberID", ingredientController.index);
-router.post("/member", ingredientController.store);
-router.put("/member/:memberID", ingredientController.update);
-router.delete("/member/:memberID", ingredientController.delete);
+router.get("/member/", memberController.data);
+router.get("/member/id/:memberID", memberController.index);
+router.post("/member", memberController.store);
+router.put("/member/:memberID", memberController.update);
+router.delete("/member/:memberID", memberController.delete);
 
-router.get("/member/", ingredientController.data);
-router.get("/member/id/:memberID", ingredientController.index);
-router.post("/member", ingredientController.store);
-router.put("/member/:memberID", ingredientController.update);
-router.delete("/member/:memberID", ingredientController.delete);
+router.get("/nutritionist/", nutritionistController.data);
+router.get("/nutritionist/id/:nutritionistID", nutritionistController.index);
+router.post("/nutritionist", nutritionistController.store);
+router.put("/nutritionist/:nutritionistID", nutritionistController.update);
+router.delete("/nutritionist/:nutritionistID", nutritionistController.delete);
 
 module.exports = router;
