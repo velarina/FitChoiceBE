@@ -7,6 +7,7 @@ const favoriteController = require("../controllers/favorite_controller");
 const ingredientController = require("../controllers/ingredient_controller");
 const memberController = require("../controllers/member_controller");
 const nutritionistController = require("../controllers/nutritionist_controller");
+const productController = require("../controllers/product_controller");
 
 router.get("/admin", adminController.data);
 router.get("/admin/:adminID", adminController.index);
@@ -43,5 +44,11 @@ router.get("/nutritionist/id/:nutritionistID", nutritionistController.index);
 router.post("/nutritionist", nutritionistController.store);
 router.put("/nutritionist/:nutritionistID", nutritionistController.update);
 router.delete("/nutritionist/:nutritionistID", nutritionistController.delete);
+
+router.get("/product/", productController.data);
+router.get("/product/id/:productID", productController.index);
+router.post("/product", productController.store);
+router.put("/product/:productID", productController.update);
+router.delete("/product/:productID", productController.delete);
 
 module.exports = router;
