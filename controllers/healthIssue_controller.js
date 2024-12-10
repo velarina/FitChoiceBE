@@ -6,44 +6,41 @@ module.exports = {
       const healthIssues = await healthIssue.findAll();
       return res.status(200).json({
         status: 200,
-        message: "data succesfully sent",
-        data: healthIssues,
+        message: "Health Issues succesfully sent.",
+        healthIssues: healthIssues,
       });
     } catch (error) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: error,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   index: async (req, res) => {
     try {
-      const healthIssues = await healthIssue.findOne({
+      const _healthIssue = await healthIssue.findOne({
         where: {
           healthIssueID: req.params.id,
         },
       });
-      if (healthIssue == null) {
+      if (_healthIssue) {
         return res.status(404).json({
           status: 404,
-          message: "data not found",
-          data: null,
+          message: "Health Issue not found.",
         });
       } else {
         return res.status(200).json({
           status: 200,
-          message: "data succesfully sent",
-          data: healthIssues,
+          message: "Health Issue succesfully sent.",
+          healthIssue: _healthIssue,
         });
       }
     } catch (error) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: error.body,
-        data: null,
+        message: "Server error.",
       });
     }
   },
@@ -56,21 +53,19 @@ module.exports = {
       });
       return res.status(201).json({
         status: 201,
-        message: "data succesfully created",
+        message: "Health Issue succesfully created.",
         data: healthIssues,
       });
     } catch (error) {
       console.log(error);
       return res.status(500).json({
         status: 500,
-        message: error.message,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   update: async (req, res) => {
-    console.log("type of:", req.body.healthIssueID);
-    const healthIssues = await healthIssue.update(
+    const _healthIssue = await healthIssue.update(
       {
         healthIssueName: req.body.healthIssueName,
         healthIssueDesc: req.body.healthIssueDesc,
@@ -82,18 +77,17 @@ module.exports = {
         },
       },
     );
-    if (healthIssues == null) {
+    if (_healthIssue) {
       return res.status(404).json({
         status: 404,
-        message: "data not found",
-        data: null,
-      });
-    } else {
-      return res.status(200).json({
-        status: 200,
-        message: "data successfully updated",
+        message: "Health Issue not found.",
       });
     }
+    return res.status(200).json({
+      status: 200,
+      message: "Health Issue successfully updated.",
+      healthIssue: _healthIssue,
+    });
   },
   delete: async (req, res) => {
     const healthIssues = healthIssue.destroy({
@@ -104,14 +98,12 @@ module.exports = {
     if (healthIssues == null) {
       return res.status(404).json({
         status: 404,
-        message: "data not found",
-        data: null,
-      });
-    } else {
-      return res.status(200).json({
-        status: 200,
-        message: "data successfully deleted",
+        message: "Health Issue not found.",
       });
     }
+    return res.status(200).json({
+      status: 200,
+      message: "Health Issue successfully deleted.",
+    });
   },
 };

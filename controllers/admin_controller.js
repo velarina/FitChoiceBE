@@ -4,52 +4,50 @@ module.exports = {
   data: async (_req, res) => {
     try {
       const admins = await admin.findAll();
+
       return res.status(200).json({
         status: 200,
-        message: "data succesfully sent",
-        data: admins,
+        message: "Admins succesfully sent.",
+        admins: admins,
       });
     } catch (error) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: error,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   index: async (req, res) => {
     try {
-      const admins = await admin.findOne({
+      const _admin = await admin.findOne({
         where: {
           adminID: req.params.id,
         },
       });
-      if (admin == null) {
+
+      if (!_admin) {
         return res.status(404).json({
           status: 404,
-          message: "data not found",
-          data: null,
-        });
-      } else {
-        return res.status(200).json({
-          status: 200,
-          message: "data succesfully sent",
-          data: admins,
+          message: "Admin not found.",
         });
       }
+      return res.status(200).json({
+        status: 200,
+        message: "Admin succesfully sent.",
+        admin: _admin,
+      });
     } catch (error) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: error.body,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   store: async (req, res) => {
     try {
-      const admins = await admin.create({
+      const _admin = await admin.create({
         adminName: req.body.adminName,
         adminEmail: req.body.adminEmail,
         password: req.body.password,
@@ -57,62 +55,69 @@ module.exports = {
       });
       return res.status(201).json({
         status: 201,
-        message: "data succesfully created",
-        data: admins,
+        message: "Admin succesfully created.",
+        admin: _admin,
       });
     } catch (error) {
       console.log(error);
       return res.status(500).json({
         status: 500,
-        message: error.message,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   update: async (req, res) => {
-    console.log("type of:", req.body.adminID);
-    const admins = await admin.update(
-      {
-        adminName: req.body.adminName,
-        adminEmail: req.body.adminEmail,
-        password: req.body.password,
-        permission: req.body.permission,
-      },
-      {
-        where: {
-          adminID: req.params.id,
+    try {
+      const _admin = await admin.update(
+        {
+          adminName: req.body.adminName,
+          adminEmail: req.body.adminEmail,
+          password: req.body.password,
+          permission: req.body.permission,
         },
-      },
-    );
-    if (admins == null) {
-      return res.status(404).json({
-        status: 404,
-        message: "data not found",
-        data: null,
-      });
-    } else {
+        {
+          where: {
+            adminID: req.params.id,
+          },
+        },
+      );
+
+      if (!_admin) {
+        return res.status(404).json({
+          status: 404,
+          message: "Admin not found.",
+        });
+      }
+
       return res.status(200).json({
         status: 200,
-        message: "data successfully updated",
+        message: "Admin successfully updated.",
+        admin: _admin,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        status: 500,
+        message: "Server error.",
       });
     }
   },
   delete: async (req, res) => {
-    const admins = admin.destroy({
-      where: {
-        adminID: req.params.id,
-      },
-    });
-    if (admins == null) {
-      return res.status(404).json({
-        status: 404,
-        message: "data not found",
-        data: null,
+    try {
+      await admin.destroy({
+        where: {
+          adminID: req.params.id,
+        },
       });
-    } else {
       return res.status(200).json({
         status: 200,
         message: "data successfully deleted",
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        status: 500,
+        message: "Server error.",
       });
     }
   },

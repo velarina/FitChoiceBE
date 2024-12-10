@@ -6,50 +6,47 @@ module.exports = {
       const nutritionists = await nutritionist.findAll();
       return res.status(200).json({
         status: 200,
-        message: "data succesfully sent",
-        data: nutritionists,
+        message: "Nutritionists succesfully sent.",
+        nutritionists: nutritionists,
       });
     } catch (error) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: error,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   index: async (req, res) => {
     try {
-      const nutritionists = await nutritionist.findOne({
+      const _nutritionist = await nutritionist.findOne({
         where: {
           nutritionistID: req.params.id,
         },
       });
-      if (nutritionist == null) {
+      if (!_nutritionist) {
         return res.status(404).json({
           status: 404,
-          message: "data not found",
-          data: null,
+          message: "Nutritionist not found.",
         });
       } else {
         return res.status(200).json({
           status: 200,
-          message: "data succesfully sent",
-          data: nutritionists,
+          message: "Nutritionist succesfully sent.",
+          nutritionist: _nutritionist,
         });
       }
     } catch (error) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: error.body,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   store: async (req, res) => {
     try {
-      const nutritionists = await nutritionist.create({
+      const _nutritionist = await nutritionist.create({
         nutritionistName: req.body.nutritionistName,
         nutritionistEmail: req.body.nutritionistEmail,
         password: req.body.password,
@@ -59,21 +56,19 @@ module.exports = {
       });
       return res.status(201).json({
         status: 201,
-        message: "data succesfully created",
-        data: nutritionists,
+        message: "Nutritionist succesfully created.",
+        nutritionist: _nutritionist,
       });
     } catch (error) {
       console.log(error);
       return res.status(500).json({
         status: 500,
-        message: error.message,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   update: async (req, res) => {
-    console.log("type of:", req.body.nutritionistID);
-    const nutritionists = await nutritionist.update(
+    const _nutritionist = await nutritionist.update(
       {
         nutritionistName: req.body.nutritionistName,
         nutritionistEmail: req.body.nutritionistEmail,
@@ -88,35 +83,34 @@ module.exports = {
         },
       },
     );
-    if (nutritionists == null) {
+    if (!_nutritionist) {
       return res.status(404).json({
         status: 404,
-        message: "data not found",
-        data: null,
+        message: "Nutritionist not found.",
       });
     } else {
       return res.status(200).json({
         status: 200,
-        message: "data successfully updated",
+        message: "Nutritionist successfully updated.",
+        nutritionist: _nutritionist,
       });
     }
   },
   delete: async (req, res) => {
-    const nutritionists = nutritionist.destroy({
+    const _nutritionist = nutritionist.destroy({
       where: {
         nutritionistID: req.params.id,
       },
     });
-    if (nutritionists == null) {
+    if (!_nutritionist) {
       return res.status(404).json({
         status: 404,
-        message: "data not found",
-        data: null,
+        message: "Nutritionist not found.",
       });
     } else {
       return res.status(200).json({
         status: 200,
-        message: "data successfully deleted",
+        message: "Nutritionist successfully deleted.",
       });
     }
   },

@@ -6,50 +6,48 @@ module.exports = {
       const members = await member.findAll();
       return res.status(200).json({
         status: 200,
-        message: "data succesfully sent",
-        data: members,
+        message: "Members succesfully sent.",
+        members: members,
       });
     } catch (error) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: error,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   index: async (req, res) => {
     try {
-      const members = await member.findOne({
+      const _member = await member.findOne({
         where: {
           memberID: req.params.id,
         },
       });
-      if (member == null) {
+      if (!_member) {
         return res.status(404).json({
           status: 404,
-          message: "data not found",
+          message: "Member not found.",
           data: null,
         });
       } else {
         return res.status(200).json({
           status: 200,
-          message: "data succesfully sent",
-          data: members,
+          message: "Member succesfully sent.",
+          member: _member,
         });
       }
     } catch (error) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: error.body,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   store: async (req, res) => {
     try {
-      const members = await member.create({
+      const _member = await member.create({
         memberName: req.body.memberName,
         membeEmail: req.body.membeEmail,
         password: req.body.password,
@@ -58,21 +56,19 @@ module.exports = {
       });
       return res.status(201).json({
         status: 201,
-        message: "data succesfully created",
-        data: members,
+        message: "Member succesfully created.",
+        member: _member,
       });
     } catch (error) {
       console.log(error);
       return res.status(500).json({
         status: 500,
-        message: error.message,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   update: async (req, res) => {
-    console.log("type of:", req.body.memberID);
-    const members = await member.update(
+    const _member = await member.update(
       {
         memberName: req.body.memberName,
         membeEmail: req.body.membeEmail,
@@ -86,35 +82,34 @@ module.exports = {
         },
       },
     );
-    if (members == null) {
+    if (!_member) {
       return res.status(404).json({
         status: 404,
-        message: "data not found",
-        data: null,
+        message: "Member not found.",
       });
     } else {
       return res.status(200).json({
         status: 200,
-        message: "data successfully updated",
+        message: "Member successfully updated.",
+        member: _member,
       });
     }
   },
   delete: async (req, res) => {
-    const members = member.destroy({
+    const _member = member.destroy({
       where: {
         memberID: req.params.id,
       },
     });
-    if (members == null) {
+    if (!_member) {
       return res.status(404).json({
         status: 404,
-        message: "data not found",
-        data: null,
+        message: "Member not found",
       });
     } else {
       return res.status(200).json({
         status: 200,
-        message: "data successfully deleted",
+        message: "Member successfully deleted",
       });
     }
   },

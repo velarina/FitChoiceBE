@@ -6,36 +6,34 @@ module.exports = {
       const ingredients = await ingredient.findAll();
       return res.status(200).json({
         status: 200,
-        message: "data succesfully sent",
-        data: ingredients,
+        message: "Ingredients succesfully sent.",
+        ingredients: ingredients,
       });
     } catch (error) {
       console.error(error);
       return res.status(500).json({
         status: 500,
-        message: error,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   index: async (req, res) => {
     try {
-      const ingredients = await ingredient.findOne({
+      const _ingredient = await ingredient.findOne({
         where: {
           ingredientID: req.params.id,
         },
       });
-      if (ingredient == null) {
+      if (!_ingredient) {
         return res.status(404).json({
           status: 404,
-          message: "data not found",
-          data: null,
+          message: "Ingredient not found.",
         });
       } else {
         return res.status(200).json({
           status: 200,
-          message: "data succesfully sent",
-          data: ingredients,
+          message: "Ingredient succesfully sent.",
+          ingredient: _ingredient,
         });
       }
     } catch (error) {
@@ -49,26 +47,24 @@ module.exports = {
   },
   store: async (req, res) => {
     try {
-      const ingredients = await ingredient.create({
+      const _ingredient = await ingredient.create({
         ingredientName: req.body.ingredientName,
       });
       return res.status(201).json({
         status: 201,
-        message: "data succesfully created",
-        data: ingredients,
+        message: "Ingredient succesfully created.",
+        ingredient: _ingredient,
       });
     } catch (error) {
       console.log(error);
       return res.status(500).json({
         status: 500,
-        message: error.message,
-        data: null,
+        message: "Server error.",
       });
     }
   },
   update: async (req, res) => {
-    console.log("type of:", req.body.ingredientID);
-    const ingredients = await ingredient.update(
+    const _ingredient = await ingredient.update(
       {
         ingredientName: req.body.ingredientName,
       },
@@ -78,35 +74,34 @@ module.exports = {
         },
       },
     );
-    if (ingredients == null) {
+    if (!_ingredient) {
       return res.status(404).json({
         status: 404,
-        message: "data not found",
-        data: null,
+        message: "Ingredient not found.",
       });
     } else {
       return res.status(200).json({
         status: 200,
-        message: "data successfully updated",
+        message: "Ingredient successfully updated.",
+        ingredient: _ingredient,
       });
     }
   },
   delete: async (req, res) => {
-    const ingredients = ingredient.destroy({
+    const _ingredient = await ingredient.destroy({
       where: {
         ingredientID: req.params.id,
       },
     });
-    if (ingredients == null) {
+    if (_ingredient == null) {
       return res.status(404).json({
         status: 404,
-        message: "data not found",
-        data: null,
+        message: "Ingredient not found.",
       });
     } else {
       return res.status(200).json({
         status: 200,
-        message: "data successfully deleted",
+        message: "Ingredient successfully deleted.",
       });
     }
   },
