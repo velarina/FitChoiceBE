@@ -1,4 +1,5 @@
 const nutritionist = require("../models/nutritionist");
+const bcrypt = require('bcrypt');
 
 module.exports = {
   data: async (_req, res) => {
@@ -49,7 +50,7 @@ module.exports = {
       const _nutritionist = await nutritionist.create({
         nutritionistName: req.body.nutritionistName,
         nutritionistEmail: req.body.nutritionistEmail,
-        password: req.body.password,
+        password: await bcrypt.hash(req.body.password, 10),
         specialization: req.body.specialization,
         certification: req.body.certification,
         yearsOfExperience: req.body.yearsOfExperience,
@@ -72,7 +73,7 @@ module.exports = {
       {
         nutritionistName: req.body.nutritionistName,
         nutritionistEmail: req.body.nutritionistEmail,
-        password: req.body.password,
+        password: await bcrypt.hash(req.body.password, 10),
         specialization: req.body.specialization,
         certification: req.body.certification,
         yearsOfExperience: req.body.yearsOfExperience,

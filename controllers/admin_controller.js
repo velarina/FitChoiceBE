@@ -1,4 +1,5 @@
 const admin = require("../models/admin");
+const bcrypt = require('bcrypt');
 
 module.exports = {
   data: async (_req, res) => {
@@ -51,7 +52,7 @@ module.exports = {
         adminName: req.body.adminName,
         adminEmail: req.body.adminEmail,
         password: req.body.password,
-        permission: req.body.permission,
+        permission: await bcrypt.hash(req.body.permission, 10),
       });
       return res.status(201).json({
         status: 201,
@@ -72,7 +73,7 @@ module.exports = {
         {
           adminName: req.body.adminName,
           adminEmail: req.body.adminEmail,
-          password: req.body.password,
+          password: await bcrypt.hash(req.body.permission),
           permission: req.body.permission,
         },
         {

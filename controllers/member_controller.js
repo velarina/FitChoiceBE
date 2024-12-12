@@ -1,4 +1,5 @@
 const member = require("../models/member");
+const bcrypt = require('bcrypt');
 
 module.exports = {
   data: async (_req, res) => {
@@ -50,7 +51,7 @@ module.exports = {
       const _member = await member.create({
         memberName: req.body.memberName,
         membeEmail: req.body.membeEmail,
-        password: req.body.password,
+        password: await bcrypt.hash(req.body.password, 10),
         age: req.body.age,
         gender: req.body.gender,
       });
@@ -72,7 +73,7 @@ module.exports = {
       {
         memberName: req.body.memberName,
         membeEmail: req.body.membeEmail,
-        password: req.body.password,
+        password: await bcrypt.hash(req.body.password, 10),
         age: req.body.age,
         gender: req.body.gender,
       },
