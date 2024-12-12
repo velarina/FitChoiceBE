@@ -21,17 +21,20 @@ const sync = async () => {
         console.error("Error creating Admin table: ", error.message)
       );
 
-    await admin
-      .create({
-        adminName: "Admin",
-        adminEmail: "admin@fitchoice.id",
-        password: await bcrypt.hash("admin123", 10),
-        permission: "adminProduct",
-      })
-      .then(() => console.log("Admin account created!"))
-      .catch((error) =>
-        console.error("Error seeding Admin account: ", error.message)
-      );
+    const admins = await admin.findAll();
+    if (admins.length == 0) {
+      await admin
+        .create({
+          adminName: "Admin",
+          adminEmail: "admin@fitchoice.id",
+          password: await bcrypt.hash("admin123", 10),
+          permission: "adminProduct",
+        })
+        .then(() => console.log("Admin account created!"))
+        .catch((error) =>
+          console.error("Error seeding Admin account: ", error.message)
+        );
+    }
 
     nutritionist.hasMany(products);
     await nutritionist
