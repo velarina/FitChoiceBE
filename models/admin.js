@@ -7,6 +7,7 @@ const admin = database.define("admin", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
+    defaultValue: DataTypes.UUIDV4
   },
   adminName: {
     type: DataTypes.STRING,

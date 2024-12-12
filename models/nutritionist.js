@@ -8,6 +8,7 @@ const nutritionist = database.define("nutritionist", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
+    defaultValue: DataTypes.UUIDV4
   },
   nutritionistName: {
     type: DataTypes.STRING,

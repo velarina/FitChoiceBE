@@ -9,6 +9,7 @@ const healthIssue = database.define("healthIssue", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
+    defaultValue: DataTypes.UUIDV4
   },
   healthIssueName: {
     type: DataTypes.STRING,

@@ -13,6 +13,7 @@ const products = database.define("products", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
+    defaultValue: DataTypes.UUIDV4
   },
   productsName: {
     type: DataTypes.STRING,
