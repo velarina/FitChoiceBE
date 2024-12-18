@@ -73,7 +73,7 @@ module.exports = {
         }
       }
 
-      const ingriedients = req.body.ingredients.split(", ");
+      const ingredients = req.body.ingredients.split(", ");
       for (const _ingredient of ingredients) {
         const isExist = await ingredient.findOne({
           where: { name: _ingredient.trim() },
